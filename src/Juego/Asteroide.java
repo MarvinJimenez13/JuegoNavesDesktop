@@ -11,7 +11,7 @@ public class Asteroide {
          //Creo numero aleatorios
        public SecureRandom coordenadaAst1 = new SecureRandom();  
      
-        //los guardo en variables
+        //los guardo en variable
         int coordenadaY1 = coordenadaAst1.nextInt(800);
      
   
@@ -33,7 +33,7 @@ public class Asteroide {
    
    
    
-   
+   // al crear un objeto asteroide pediran coordenadas iniciales
    public Asteroide(int x, int y){
        this.x_inicial = x;
        this.y_inicial =y;
@@ -57,6 +57,10 @@ public class Asteroide {
         
      }
     
+     
+     
+     
+     //creo getters y setters para poder obrtener las coordenadas
      public int getX(){
          return x_inicial;
      }

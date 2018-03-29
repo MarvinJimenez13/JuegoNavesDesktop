@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 
 public class Nave {
     
+    
+    //creo una lista de las balas que se van a crear
       public ArrayList listaBalas = new ArrayList();
 
     //creo las dimensuiones de la nave
@@ -39,7 +41,10 @@ public class Nave {
     }
 
     public void Bala() {
-     
+      
+        /* creo un ciclo for para recorrer la lista de balas
+        y mandarle mensaje de que se muevan */
+        
         for (int i = 0; i < listaBalas.size(); i++) {
             Bala nuevaBala = (Bala)listaBalas.get(i);
             nuevaBala.mover();
@@ -80,8 +85,12 @@ public class Nave {
             izquierda = true;
             derecha = false;
         }
+        /*  si el codigo del teclado es igual al de la tecla s
+        entonces creo una nueva bala con las coordenadas de  el lugar
+        en donde se encuentra la nave*/
         if(e.getKeyCode() == KeyEvent.VK_S){
             Bala bala = new Bala(x_inicial,y_inicial);
+            //añado la bala a la lista de balas
             listaBalas.add(bala);
         }
     }
