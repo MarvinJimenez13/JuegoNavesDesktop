@@ -18,7 +18,7 @@ public class Panel extends JPanel {
     
     
     //creo una lista de los asteroides
-       public ArrayList listaAsteroides = new ArrayList(2);
+      // public ArrayList listaAsteroides = new ArrayList();
   
         
         //Creo numero aleatorios
@@ -85,7 +85,8 @@ public class Panel extends JPanel {
         fondo.paint(g);
         nave.paint(g);
        nave.Bala();
-        
+        aste1.paint(g);
+        aste2.paint(g);
         /*
         Creo un ciclo for para recorrer la lista de los objetos tipo
         Ateroide y poder pinat uno a uno
@@ -95,23 +96,38 @@ public class Panel extends JPanel {
              pintarBala.paint(g);
          }
         
-         for (int i = 0; i < listaAsteroides.size(); i++) {
+        /* for (int i = 0; i < listaAsteroides.size(); i++) {
              Asteroide astpaint = (Asteroide)listaAsteroides.get(i);
              astpaint.paint(g);
-         }
+         }*/
         
     }
      
       public void mover() {
       nave.moverNave();
       //metodo que ocntiene los dos primeros asteroides
-      crearAsteroides(aste1,aste2);
+     // crearAsteroides(aste1,aste2);
+      aste1.moverAst();
+      aste2.moverAst();
       
+      if(aste1.getY() == 700 && aste2.getY() == 700){
+          
+            SecureRandom coordenada1 = new SecureRandom(); 
+            int coordenada1Ast = coordenada1.nextInt(800);
+            int coordenada2Ast = coordenada1.nextInt(800);
+            
+            
+          
+          aste1.setX(coordenada1Ast);
+          aste1.setY(-10);
+            aste2.setX(coordenada2Ast);
+          aste2.setY(-10);
+      }
      
           
     }
       
-      
+      /*
       public void crearAsteroides(Asteroide aste1,Asteroide aste2){
          
           
@@ -129,7 +145,7 @@ public class Panel extends JPanel {
          
           
       }
-      
+      */
       
      
       public void finJuego(){

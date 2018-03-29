@@ -8,7 +8,12 @@ import javax.swing.ImageIcon;
 
 public class Asteroide {
     
-    
+         //Creo numero aleatorios
+       public SecureRandom coordenadaAst1 = new SecureRandom();  
+     
+        //los guardo en variables
+        int coordenadaY1 = coordenadaAst1.nextInt(800);
+     
   
     
     //defino las dimensiones del ateroide
@@ -45,11 +50,10 @@ public class Asteroide {
      public void moverAst(){
          // si mover es true
          if(mover){
-             y_aux = 2;
+             y_aux = 5;
              //incrementar la y 
             y_inicial += y_aux;
          }
-         
         
      }
     

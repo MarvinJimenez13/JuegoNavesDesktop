@@ -52,7 +52,7 @@ public class Nave {
     public void moverNave() {
         //si derecha es true
         if (derecha == true) {
-            x_aux = 10;
+            x_aux = 20;
             //aumentra x en 10
             x_inicial += x_aux;
             derecha = false;
@@ -60,7 +60,7 @@ public class Nave {
         //si izquierda es true
         if (izquierda == true) {
 
-            x_aux = -10;
+            x_aux = -20;
             //disminuir x en 10
             x_inicial += x_aux;
             izquierda = false;
