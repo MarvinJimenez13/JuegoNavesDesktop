@@ -1,9 +1,14 @@
 package Juego;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.geom.Area;
 import javax.swing.ImageIcon;
 
 public class Bala {
+    
+    
+    Area bala,areaBala;
 
     //Creo su ancho y largo de la bala
     int anchoBala = 200;
@@ -29,6 +34,19 @@ public class Bala {
         //dibujo la imagen
         g.drawImage(auto.getImage(), x_inicio, y_inicio, anchoBala, altoBala, null);
     }
+    
+ 
+    //metodo para crear un forma geometrica de la bala y tener su area   
+    public Area getBounds(){
+      Rectangle forma = new Rectangle(x_inicio,y_inicio,150,150);
+      bala = new Area(forma);
+      
+      areaBala = bala;
+      areaBala.add(bala);
+      
+      return areaBala;
+      
+  }
 
     public void mover() {
         y_aux = 5;

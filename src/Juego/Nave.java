@@ -132,6 +132,8 @@ public class Nave {
         this.y_inicial = y_inicial;
     }
     
+    
+     //metodo para crear un forma geometrica de la nave y tener su area
     public Area getBounds(){
         Rectangle forma1 = new Rectangle(x_inicial,y_inicial,100,100);
         nave = new Area(forma1);

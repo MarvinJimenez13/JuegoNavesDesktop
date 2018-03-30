@@ -13,9 +13,6 @@ public class Asteroide {
     Area asteroide,areaAst;
     
     Nave nave = new Nave();
-   
-   
-
 
     //Creo numero aleatorios
     public SecureRandom coordenadaAst1 = new SecureRandom();
@@ -57,10 +54,7 @@ public class Asteroide {
             //incrementar la y 
             y_inicial += y_aux;
         }
-      
-        
-        
-        
+ 
     }
 
     //creo getters y setters para poder obrtener las coordenadas
@@ -96,13 +90,8 @@ public class Asteroide {
         this.anchoAst = anchoAst;
     }
     
-     
-    public boolean colision() {
-                Area areaA = new Area(nave.getBounds());
-		areaA.intersect(getBounds());
-                return !areaA.isEmpty();
-        }
     
+    //metodo para crear un forma geometrica del asteroide y tener su area
     public Area getBounds(){
         Rectangle forma1 = new Rectangle(x_inicial,y_inicial,100,100);
         asteroide = new Area(forma1);

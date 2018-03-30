@@ -21,9 +21,16 @@ public class InicioJuego {
         ventana.setVisible(true);
         //metodo al cerrar la ventana
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+        
+        
+          if(panel.contadorChoquesAst > 2 ){
+          panel.juegoFin = false;
+        }
 
         //mientras el juego siga
-        while (!panel.juegoFin) {
+        while (panel.juegoFin) {
             //pinto el panel de nuevo
             panel.repaint();
             //un try para recoger exepciones
@@ -33,6 +40,8 @@ public class InicioJuego {
             } catch (InterruptedException ex) {
                 Logger.getLogger(InicioJuego.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            panel.repaint();
         }
 
     }
