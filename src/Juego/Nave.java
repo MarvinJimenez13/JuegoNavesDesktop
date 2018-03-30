@@ -2,11 +2,16 @@ package Juego;
 
 import Ejecutable.Panel;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Nave {
+    
+    
+    Area nave,areaNave;
     
     
     //creo una lista de las balas que se van a crear
@@ -93,6 +98,47 @@ public class Nave {
             //añado la bala a la lista de balas
             listaBalas.add(bala);
         }
+    }
+
+    public int getAnchoNave() {
+        return anchoNave;
+    }
+
+    public void setAnchoNave(int anchoNave) {
+        this.anchoNave = anchoNave;
+    }
+
+    public int getAlturaNave() {
+        return alturaNave;
+    }
+
+    public void setAlturaNave(int alturaNave) {
+        this.alturaNave = alturaNave;
+    }
+
+    public int getX_inicial() {
+        return x_inicial;
+    }
+
+    public void setX_inicial(int x_inicial) {
+        this.x_inicial = x_inicial;
+    }
+
+    public int getY_inicial() {
+        return y_inicial;
+    }
+
+    public void setY_inicial(int y_inicial) {
+        this.y_inicial = y_inicial;
+    }
+    
+    public Area getBounds(){
+        Rectangle forma1 = new Rectangle(x_inicial,y_inicial,100,100);
+        nave = new Area(forma1);
+        
+        areaNave = nave;
+        areaNave.add(nave);
+        return areaNave;
     }
 
 }

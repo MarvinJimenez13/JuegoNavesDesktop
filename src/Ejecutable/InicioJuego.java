@@ -1,34 +1,31 @@
 package Ejecutable;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 
-
 public class InicioJuego {
-    
+
     public static void main(String[] args) {
         //creo un JFrame
-         JFrame ventana = new JFrame("Juego Nave");
-         //creo un objeto panel
-         Panel panel = new Panel();
-         //a la venta le agrego el panel
-         ventana.add(panel);
-         //creo su ancho y alto
-         ventana.setSize(1000,800);
-         //le pongo su localizacion en la pantalla
-	ventana.setLocation(70, 40);
+        JFrame ventana = new JFrame("Juego Nave");
+        //creo un objeto panel
+        Panel panel = new Panel();
+        //a la venta le agrego el panel
+        ventana.add(panel);
+        //creo su ancho y alto
+        ventana.setSize(1000, 800);
+        //le pongo su localizacion en la pantalla
+        ventana.setLocation(70, 40);
         //la hago visible
         ventana.setVisible(true);
         //metodo al cerrar la ventana
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
+
         //mientras el juego siga
-        while(!panel.juegoFin){
-              //pinto el panel de nuevo
-              panel.repaint();
+        while (!panel.juegoFin) {
+            //pinto el panel de nuevo
+            panel.repaint();
             //un try para recoger exepciones
             try {
                 //cada 10 tiempos :v
@@ -37,7 +34,7 @@ public class InicioJuego {
                 Logger.getLogger(InicioJuego.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
-    
+
 }
