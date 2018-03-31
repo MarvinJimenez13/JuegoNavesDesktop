@@ -1,8 +1,11 @@
 package Ejecutable;
 
+
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class InicioJuego {
 
@@ -14,19 +17,21 @@ public class InicioJuego {
         //a la venta le agrego el panel
         ventana.add(panel);
         //creo su ancho y alto
-        ventana.setSize(1000, 800);
+        ventana.setSize(1250, 800);
         //le pongo su localizacion en la pantalla
         ventana.setLocation(70, 40);
         //la hago visible
         ventana.setVisible(true);
         //metodo al cerrar la ventana
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        
+       
+        panel.setBackground(Color.BLACK);
         
           if(panel.contadorChoquesAst > 2 ){
           panel.juegoFin = false;
+
+       
+                  
         }
 
         //mientras el juego siga
