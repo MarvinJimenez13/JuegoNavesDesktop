@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class InicioJuego {
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         //creo un JFrame
         JFrame ventana = new JFrame("Juego Nave");
         //creo un objeto panel
@@ -26,14 +26,14 @@ public class InicioJuego {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
         panel.setBackground(Color.BLACK);
-        
+    
           if(panel.contadorChoquesAst > 2 ){
           panel.juegoFin = false;
 
        
                   
         }
-
+       
         //mientras el juego siga
         while (panel.juegoFin) {
             //pinto el panel de nuevo

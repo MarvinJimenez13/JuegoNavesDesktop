@@ -17,19 +17,21 @@ import java.awt.geom.Area;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel {
-    
-       
-            boolean juegoFin = true;
-            
-            int puntos;
-            int vidas =3;
-            
-            
-              URL direccionSonidoDisparo,direccionSonidoChoque;
-    AudioClip sonidoChoque,sonidoDisparo;  
+
+    //Variable boolean para saber si el juego sigue
+    boolean juegoFin = true;
+    //VARIABLE NIVEL
+    public static int nivel = 1;
+    //puntos en 0 y vidas en 3
+    int puntos;
+    int vidas = 3;
+    //defino variables para el sonido
+    URL direccionSonidoDisparo, direccionSonidoChoque;
+    AudioClip sonidoChoque, sonidoDisparo;
 
     //Creo numero aleatorios
     public SecureRandom coordenadaAst1 = new SecureRandom();
@@ -40,25 +42,23 @@ public class Panel extends JPanel {
     //creo la nave y el fondo del juego
     Nave nave = new Nave();
     Fondo fondo = new Fondo();
+
     //creo dos asteroides
     public Asteroide aste1 = new Asteroide(coordenadaY1, -10);
     public Asteroide aste2 = new Asteroide(coordenadaY2, -10);
-    
-    
+    //contador de los choques con nave-aste
     int contadorChoquesAst;
 
-   
-
-    Explocion ex = new Explocion(nave.getX_inicial(), nave.getY_inicial());
-
     public Panel() {
-        
-         direccionSonidoChoque=getClass().getResource("/Sonidos/choque.wav");
-        sonidoChoque=Applet.newAudioClip(direccionSonidoChoque);
-        
-       direccionSonidoDisparo=getClass().getResource("/Sonidos/Disparo.wav");
-        sonidoDisparo=Applet.newAudioClip(direccionSonidoChoque);
-        
+
+        //defino la URL del sonido
+        direccionSonidoChoque = getClass().getResource("/Sonidos/choque.wav");
+        //añado el clip
+        sonidoChoque = Applet.newAudioClip(direccionSonidoChoque);
+        //defino la URL del sonido
+        direccionSonidoDisparo = getClass().getResource("/Sonidos/Disparo2.m4a");
+        //añado el clip
+        sonidoDisparo = Applet.newAudioClip(direccionSonidoChoque);
 
         //metodos para obtener informacion del teclado
         addKeyListener(new KeyListener() {
@@ -87,31 +87,39 @@ public class Panel extends JPanel {
         dibujar(g2);
         //si no lo pongo no se mueven
         mover(g2);
-     
-        
 
     }
-    
-      public void dibujarPuntaje(Graphics2D g) {
-        
-        Graphics2D g1 = g, g2 = g,g3 =g;
-        Font score = new Font("Arial", Font.BOLD, 30);
+    //metodo para dibujar en pantalla
+
+    public void dibujarPuntaje(Graphics2D g) {
+
+        Graphics2D g1 = g, g2 = g, g3 = g;
+        //defino un tipo de fuente
+        Font score = new Font("Arial", Font.BOLD, 35);
+        //a los graficos les añado el tipo de fuente
         g.setFont(score);
+        //color
         g.setColor(Color.blue);
-        g1.drawString("Puntaje:  "+puntos, 1000, 50);
-        
-       
-            g2.setColor(Color.red);
-            g2.drawString("VIdas: \n" + vidas, 1000 , 120);
-            
-            
-          if(contadorChoquesAst > 2 ){
-              Font score2 = new Font("Arial", Font.BOLD, 70);
-              g.setFont(score2);
-         g3.setColor(Color.WHITE);
-         g3.drawString("YOU LOSE PRRO :V", 185,400 );
+        //lo dibujo
+        g.drawString("Puntaje:  " + puntos, 1020, 50);
+
+        //color
+        g.setColor(Color.yellow);
+        //Dibujo el nivel
+        g2.drawString("NIVEL " + nivel, 1050, 300);
+
+        //Dibujo las vidas
+        g.setColor(Color.red);
+        g.drawString("VIdas: " + vidas, 1030, 120);
+
+        //DIbujo que perdio la partida
+        if (contadorChoquesAst > 2) {
+            Font score2 = new Font("Arial", Font.BOLD, 70);
+            g3.setFont(score2);
+            g3.setColor(Color.WHITE);
+            g3.drawString("YOU LOSE PRRO :V", 185, 400);
         }
-       
+
     }
 
     public void dibujar(Graphics2D g) {
@@ -121,16 +129,17 @@ public class Panel extends JPanel {
         nave.Bala();
         aste1.paint(g);
         aste2.paint(g);
-         dibujarPuntaje(g);
+        dibujarPuntaje(g);
 
         /* coloco estas condiciones quí por que necesito que se pinten las explosiones
         y en este metodo estan los graficos en 2D*/
         //si la colision en el asteroide1 con la nave es true
         if (colisionAst1()) {
-            
+            //activo el sonido se choque
             sonidoChoque.play();
-            
+            //reduzco las vidas
             vidas--;
+            //aumento en 1 el choque
             contadorChoquesAst += 1;
             //imprimo para comprobar que sirva
             System.out.println("Pego 1");
@@ -147,23 +156,19 @@ public class Panel extends JPanel {
             Explocion explocion = new Explocion(nave.getX_inicial(), nave.getY_inicial() - 50);
             //la pinto
             explocion.paint(g);
-            
-             
-             
-             if(contadorChoquesAst > 2){
-                 juegoFin = false;
-             }
-            
-            
-            
+            //si el  contador de los choques es mayor a dos el juego termina
+            if (contadorChoquesAst > 2) {
+                juegoFin = false;
+            }
 
         }
         //si la colision en el asteroide2 con la nave es true
         if (colisionAst2()) {
-            
-            
+            //activo el sonido de choque   
             sonidoChoque.play();
+            //reduzco las vidas
             vidas--;
+            //aumento el contador de choques
             contadorChoquesAst += 1;
             //imprimo para comprobar que sirva
             System.out.println("Pego 2");
@@ -179,31 +184,28 @@ public class Panel extends JPanel {
             Explocion explocion = new Explocion(nave.getX_inicial(), nave.getY_inicial() - 50);
             //la pinto
             explocion.paint(g);
-         
-             
-             if(contadorChoquesAst > 2){
-                 juegoFin = false;
-             }
+            //si el  contador de los choques es mayor a dos el juego termina
+            if (contadorChoquesAst > 2) {
+                juegoFin = false;
+            }
 
         }
-        
-      
 
         /* Creo un ciclo for para reccorer las balas creadas y poder
         pintarlas */
         for (int i = 0; i < nave.listaBalas.size(); i++) {
             Bala pintarBala = (Bala) nave.listaBalas.get(i);
-            Bala sonidoB = (Bala)nave.listaBalas.get(i);
-            
-            
-            if(pintarBala.getY_inicio() >= 400){
-            sonidoDisparo.play();
-        }
-            
+            Bala sonidoB = (Bala) nave.listaBalas.get(i);
+            //si la bala es mayor o igual que los 400px
+            if (pintarBala.getY_inicio() == 400) {
+                //activo sonido de bala
+                sonidoDisparo.play();
+            }
+            //pinto la bala
             pintarBala.paint(g);
-         
+
         }
-       
+
         /*
         Creo un ciclo for para recorrer la lista de los objetos tipo
         Ateroide y poder pinat uno a uno
@@ -215,9 +217,11 @@ public class Panel extends JPanel {
     }
 
     public void mover(Graphics2D g) {
+        //muevo la nave
         nave.moverNave();
 
         // crearAsteroides(aste1,aste2);
+        //muevo los asteroides
         aste1.moverAst();
         aste2.moverAst();
 
@@ -248,15 +252,22 @@ public class Panel extends JPanel {
             //creo los obejtos de tipo bala
             Bala balaCol = (Bala) nave.listaBalas.get(i);
 
-            //si la oclision bala contr el asteroide1 es true
+            //si la oclision bala contra el asteroide1 es true
             if (colisionBalaAst1(balaCol)) {
-                
-                
+                //aumento los puntos
                 puntos++;
-                
-                        Explocion explocion = new Explocion(aste1.getX() ,aste1.getY() );
-                        explocion.paint(g);
-                
+                //aumento los puntos
+                if (puntos > 20 && puntos < 40) {
+                    nivel = 2;
+                    //aumento la velocidad
+                    aste1.setY_velocidad(4);
+                    aste2.setY_velocidad(4);
+                }
+                //creo una explocion
+                Explocion explocion = new Explocion(aste1.getX(), aste1.getY());
+                //pinto la explocion
+                explocion.paint(g);
+
                 //imprimo para comporbar
                 System.out.println("Pego bala en 1");
                 //creo numero aleatorio
@@ -265,25 +276,29 @@ public class Panel extends JPanel {
                 int rango = coordenadaAst1.nextInt(850);
                 int rango2 = coordenadaAst1.nextInt(850);
                 //creo nuevas cooredenas para el asteroide1
-         
-                
                 aste1.setX(rango);
                 aste1.setY(-10);
-               
+
                 //elimino la bala que colisiona del arreglo
                 nave.listaBalas.remove(balaCol);
 
             }
             //si la oclision bala contr el asteroide2 es true
             if ((colisionBalaAst2(balaCol))) {
-                
-                
+                //aumento los puntos
                 puntos++;
-                
-                 Explocion explocion = new Explocion(aste1.getX() ,aste1.getY() );
-                        explocion.paint(g);
-                
-                
+                //aumento los puntos
+                if (puntos > 20 && puntos < 40) {
+                    nivel = 2;
+                    //aumento la velocidad
+                    aste1.setY_velocidad(4);
+                    aste2.setY_velocidad(4);
+                }
+                //creo una explocion
+                Explocion explocion = new Explocion(aste1.getX(), aste1.getY());
+                //pinto la explocion
+                explocion.paint(g);
+
                 //imprimo para comporbar
                 System.out.println("Pego bala en 2");
                 SecureRandom coordenadaAst1 = new SecureRandom();
@@ -328,9 +343,7 @@ public class Panel extends JPanel {
         areaA.intersect(aste1.getBounds());
 
         return !areaA.isEmpty();
-        
-        
-   
+
     }
 
     public boolean colisionBalaAst2(Bala bala) {
@@ -341,8 +354,7 @@ public class Panel extends JPanel {
     }
 
     public void finJuego() {
-        
-        
+
     }
 
 }

@@ -5,6 +5,9 @@ import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 
 public class Fondo {
+    
+    
+  
 
     //indico las dimensiones del fondo
     int ancho = 1000;
@@ -19,10 +22,28 @@ public class Fondo {
     }
 
     public void paint(Graphics2D g) {
-        //creo la imagen de fondo
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"));
-        //dibujo la imagen
+        
+        
+        /*  
+        
+        Depende del nivel del juego se pintará
+        un nuefo fondo
+        
+        */
+        
+        
+        if(Panel.nivel == 1){
+            //creo la imagen de fondo
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/Fondogif.gif"));
+          //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
+        }
+       if(Panel.nivel == 2){
+           //creo la imagen de fondo
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"));
+          //dibujo la imagen
+        g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
+        }
 
     }
 

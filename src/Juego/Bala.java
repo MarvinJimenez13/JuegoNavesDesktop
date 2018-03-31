@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Bala {
     
-    
+    //creo variables para  areas
     Area bala,areaBala;
 
     //Creo su ancho y largo de la bala
@@ -49,7 +49,7 @@ public class Bala {
   }
 
     public void mover() {
-        y_aux = 5;
+        y_aux = 10;
         y_inicio -= y_aux;
     }
 

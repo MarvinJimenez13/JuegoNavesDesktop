@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Asteroide {
-    
+    //creo valibles de area
     Area asteroide,areaAst;
-    
+    //creo una nave
     Nave nave = new Nave();
 
     //Creo numero aleatorios
@@ -21,15 +21,15 @@ public class Asteroide {
     int coordenadaY1 = coordenadaAst1.nextInt(800);
 
     //defino las dimensiones del ateroide
-    int anchoAst = 217;
-    int alturaAst = 230;
+    int anchoAst = 180;
+    int alturaAst = 200;
 
     //deifno de donde saldra
     int x_inicial;
     int y_inicial;
 
     // variable auxiliar para mover
-    int y_aux;
+    int y_velocidad;
 
     //variable auxiliar
     boolean mover = true;
@@ -50,9 +50,9 @@ public class Asteroide {
     public void moverAst() {
         // si mover es true
         if (mover) {
-            y_aux = 5;
+            y_velocidad = 2;
             //incrementar la y 
-            y_inicial += y_aux;
+            y_inicial += y_velocidad;
         }
  
     }
@@ -89,6 +89,16 @@ public class Asteroide {
     public void setAnchoAst(int anchoAst) {
         this.anchoAst = anchoAst;
     }
+
+    public int getY_velocidad() {
+        return y_velocidad;
+    }
+
+    public void setY_velocidad(int y_velocidad) {
+        this.y_velocidad = y_velocidad;
+    }
+    
+    
     
     
     //metodo para crear un forma geometrica del asteroide y tener su area

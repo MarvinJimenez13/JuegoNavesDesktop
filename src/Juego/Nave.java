@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public class Nave {
     
-    
+    //creo variables de area
     Area nave,areaNave;
     
     
@@ -18,8 +18,8 @@ public class Nave {
       public ArrayList listaBalas = new ArrayList();
 
     //creo las dimensuiones de la nave
-    int anchoNave = 202;
-    int alturaNave = 158;
+    int anchoNave = 150;
+    int alturaNave = 170;
 
     //indico las variabes de posicion de inicio
     int x_inicial = 380;
@@ -32,7 +32,7 @@ public class Nave {
     boolean derecha = false;
     boolean izquierda = false;
 
-    Panel pane;
+   
 
     public Nave() {
 
@@ -40,7 +40,7 @@ public class Nave {
 
     public void paint(Graphics2D g) {
         //creo imagen para la nave    
-        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/naveJuego.png"));
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Nave1.gif"));
         //dibujo la imagen
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoNave, alturaNave, null);
     }
@@ -62,7 +62,7 @@ public class Nave {
     public void moverNave() {
         //si derecha es true
         if (derecha == true) {
-            x_aux = 20;
+            x_aux = 30;
             //aumentra x en 10
             x_inicial += x_aux;
             derecha = false;
@@ -70,7 +70,7 @@ public class Nave {
         //si izquierda es true
         if (izquierda == true) {
 
-            x_aux = -20;
+            x_aux = -30;
             //disminuir x en 10
             x_inicial += x_aux;
             izquierda = false;
@@ -81,19 +81,19 @@ public class Nave {
 
     public void keyPressed(KeyEvent e) {
         // si el codigo del teclado es de la tecla d
-        if (e.getKeyCode() == KeyEvent.VK_D) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             derecha = true;
             izquierda = false;
         }
         //si el codigo del teclado es de la tecla a
-        if (e.getKeyCode() == KeyEvent.VK_A) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             izquierda = true;
             derecha = false;
         }
         /*  si el codigo del teclado es igual al de la tecla s
         entonces creo una nueva bala con las coordenadas de  el lugar
-        en donde se encuentra la nave*/
-        if(e.getKeyCode() == KeyEvent.VK_S){
+        en donde se encuentra la nave*/ 
+        if(e.getKeyCode() == KeyEvent.VK_SPACE ){
             Bala bala = new Bala(x_inicial,y_inicial);
             //añado la bala a la lista de balas
             listaBalas.add(bala);
