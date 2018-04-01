@@ -44,6 +44,18 @@ public class Fondo {
           //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
         }
+        if(Panel.nivel == 3){
+           //creo la imagen de fondo
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/esp.jpg"));
+          //dibujo la imagen
+        g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
+        }
+         if(Panel.nivel == 4){
+           //creo la imagen de fondo
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/images.jpg"));
+          //dibujo la imagen
+        g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
+        }
 
     }
 

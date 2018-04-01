@@ -39,6 +39,7 @@ public class Panel extends JPanel {
     //los guardo en variables
     int coordenadaY1 = coordenadaAst1.nextInt(800);
     int coordenadaY2 = coordenadaAst2.nextInt(800);
+    int coordenadaY3 = coordenadaAst2.nextInt(800);
     //creo la nave y el fondo del juego
     Nave nave = new Nave();
     Fondo fondo = new Fondo();
@@ -46,6 +47,8 @@ public class Panel extends JPanel {
     //creo dos asteroides
     public Asteroide aste1 = new Asteroide(coordenadaY1, -10);
     public Asteroide aste2 = new Asteroide(coordenadaY2, -10);
+    public Asteroide aste3 = new Asteroide(coordenadaY3, -200);
+     public Asteroide aste4 = new Asteroide(coordenadaY3, -200);
     //contador de los choques con nave-aste
     int contadorChoquesAst;
 
@@ -129,6 +132,9 @@ public class Panel extends JPanel {
         nave.Bala();
         aste1.paint(g);
         aste2.paint(g);
+        //se pintan muy lejos :v
+        aste3.paint(g);
+        aste4.paint(g);
         dibujarPuntaje(g);
 
         /* coloco estas condiciones quí por que necesito que se pinten las explosiones
@@ -256,13 +262,7 @@ public class Panel extends JPanel {
             if (colisionBalaAst1(balaCol)) {
                 //aumento los puntos
                 puntos++;
-                //aumento los puntos
-                if (puntos > 20 && puntos < 40) {
-                    nivel = 2;
-                    //aumento la velocidad
-                    aste1.setY_velocidad(4);
-                    aste2.setY_velocidad(4);
-                }
+
                 //creo una explocion
                 Explocion explocion = new Explocion(aste1.getX(), aste1.getY());
                 //pinto la explocion
@@ -287,15 +287,9 @@ public class Panel extends JPanel {
             if ((colisionBalaAst2(balaCol))) {
                 //aumento los puntos
                 puntos++;
-                //aumento los puntos
-                if (puntos > 20 && puntos < 40) {
-                    nivel = 2;
-                    //aumento la velocidad
-                    aste1.setY_velocidad(4);
-                    aste2.setY_velocidad(4);
-                }
+
                 //creo una explocion
-                Explocion explocion = new Explocion(aste1.getX(), aste1.getY());
+                Explocion explocion = new Explocion(aste2.getX(), aste2.getY());
                 //pinto la explocion
                 explocion.paint(g);
 
@@ -314,6 +308,228 @@ public class Panel extends JPanel {
 
             }
 
+            if ((colisionBalaAst3(balaCol))) {
+                //aumento los puntos
+                puntos++;
+
+                //creo una explocion
+                Explocion explocion = new Explocion(aste3.getX(), aste3.getY());
+                //pinto la explocion
+                explocion.paint(g);
+
+                //imprimo para comporbar
+                System.out.println("Pego bala en 3");
+                SecureRandom coordenadaAst1 = new SecureRandom();
+                //creo numero aleatorio
+                int rango = coordenadaAst1.nextInt(850);
+                int rango2 = coordenadaAst1.nextInt(850);
+                //creo nuevas cooredenas para el asteroide2
+                aste3.setX(rango2);
+                //si el nivel es 3 o 4 aparce ya en el juego
+                if(nivel == 3 || nivel == 4)
+                aste3.setY(-10);
+                Explocion explocion1 = new Explocion(aste3.getX(), aste3.getY());
+                //elimino la bala que colisiona del arreglo
+                nave.listaBalas.remove(balaCol);
+
+            }
+            
+            if ((colisionBalaAst4(balaCol))) {
+                //aumento los puntos
+                puntos++;
+
+                //creo una explocion
+                Explocion explocion = new Explocion(aste4.getX(), aste4.getY());
+                //pinto la explocion
+                explocion.paint(g);
+
+                //imprimo para comporbar
+                System.out.println("Pego bala en 4");
+                SecureRandom coordenadaAst1 = new SecureRandom();
+                //creo numero aleatorio
+                int rango = coordenadaAst1.nextInt(850);
+                int rango2 = coordenadaAst1.nextInt(850);
+                //creo nuevas cooredenas para el asteroide2
+                aste4.setX(rango2);
+                //si el nivel es 4 aparece en el juego
+                if( nivel == 4)
+                aste4.setY(-10);
+                Explocion explocion1 = new Explocion(aste4.getX(), aste4.getY());
+                //elimino la bala que colisiona del arreglo
+                nave.listaBalas.remove(balaCol);
+
+            }
+
+        }
+
+        
+        
+        //NIVELES
+        if (puntos > 10 && puntos < 20) {
+            nivel = 2;
+            //aumento la velocidad
+            aste1.setY_velocidad(10);
+            aste2.setY_velocidad(10);
+            //el aste3 todavia no debe verse
+            aste3.setY(-200);
+        }
+        if (puntos > 20 && puntos < 45) {
+            nivel = 3;
+            //aumento la velocidad
+            aste1.setY_velocidad(15);
+            aste2.setY_velocidad(15);
+
+          
+
+            
+            //COONDICONES PARA EL NUEVO ASTEROIDE3
+            
+            //lo muevo
+              aste3.moverAst();
+              //le doy velocidad
+            aste3.setY_velocidad(15);
+            //condicion para reiniciar su ciclo
+            if (aste3.getY() == 800) {
+                //numeros aleatorios
+                SecureRandom coordenada1 = new SecureRandom();
+                int coordenada2Ast = coordenada1.nextInt(800);
+                //defino sus nuevas coordenadas
+                aste3.setX(coordenada2Ast);
+                aste3.setY(-10);
+            }
+             //VER SI COLISIONO CON LA NAVE
+            if (colisionAst3()) {
+                //activo el sonido de choque   
+                sonidoChoque.play();
+                //reduzco las vidas
+                vidas--;
+                //aumento el contador de choques
+                contadorChoquesAst += 1;
+                //imprimo para comprobar que sirva
+                System.out.println("Pego 3");
+                //creo numero aleatorio
+                SecureRandom coordenadaAst1 = new SecureRandom();
+                //los guardo en varuiables
+                int rango = coordenadaAst1.nextInt(850);
+                int rango2 = coordenadaAst1.nextInt(850);
+                //creo nuevas coordenadas para asteroide3
+                aste3.setX(rango2);
+                aste3.setY(-10);
+                //creo un explosion
+                Explocion explocion = new Explocion(nave.getX_inicial(), nave.getY_inicial() - 50);
+                //la pinto
+                explocion.paint(g);
+                //si el  contador de los choques es mayor a dos el juego termina
+                if (contadorChoquesAst > 2) {
+                    juegoFin = false;
+                }
+
+            }
+
+        }
+        if (puntos > 45 ) {
+            nivel = 4;
+           // aste3.setY(-200);         
+            //aumento la velocidad
+            aste1.setY_velocidad(20);
+            aste2.setY_velocidad(20);
+            
+            
+            
+            
+            //COONDICONES PARA EL NUEVO ASTEROIDE3
+            
+            
+            //lo muevo
+              aste3.moverAst();
+              //le doy velocidad
+            aste3.setY_velocidad(20);
+            
+            //condicion para reiniciar el ciclo
+            if (aste3.getY() == 800) {
+                //numeros aleatorios
+                SecureRandom coordenada1 = new SecureRandom();
+                int coordenada2Ast = coordenada1.nextInt(800);
+                //defino sus nuevas coordenadas
+                aste3.setX(coordenada2Ast);
+                aste3.setY(-10);
+            }
+             
+            
+            
+            // VER SI COLISIONO CON LA NAVE
+            if (colisionAst3()) {
+                //activo el sonido de choque   
+                sonidoChoque.play();
+                //reduzco las vidas
+                vidas--;
+                //aumento el contador de choques
+                contadorChoquesAst += 1;
+                //imprimo para comprobar que sirva
+                System.out.println("Pego 3");
+                //creo numero aleatorio
+                SecureRandom coordenadaAst1 = new SecureRandom();
+                //los guardo en varuiables
+                int rango = coordenadaAst1.nextInt(850);
+                int rango2 = coordenadaAst1.nextInt(850);
+                //creo nuevas coordenadas para asteroide3
+                aste3.setX(rango2);
+                aste3.setY(-10);
+                //creo un explosion
+                Explocion explocion = new Explocion(nave.getX_inicial(), nave.getY_inicial() - 50);
+                //la pinto
+                explocion.paint(g);
+                //si el  contador de los choques es mayor a dos el juego termina
+                if (contadorChoquesAst > 2) {
+                    juegoFin = false;
+                }
+
+            }
+            
+            
+            
+             //COONDICONES PARA EL NUEVO ASTEROIDE 4
+            //LO MUEVO
+              aste4.moverAst();
+              //le doy velocidad
+            aste4.setY_velocidad(20);
+            //condicion para reinicar el ciclo
+            if (aste4.getY() == 800) {
+                //numeros aleatorios
+                SecureRandom coordenada1 = new SecureRandom();
+                int coordenada2Ast = coordenada1.nextInt(800);
+                //defino sus nuevas coordenadas
+                aste4.setX(coordenada2Ast);
+                aste4.setY(-10);
+            }
+             //ver si colisiona con la nave
+            if (colisionAst4()) {
+                //activo el sonido de choque   
+                sonidoChoque.play();
+                //reduzco las vidas
+                vidas--;
+                //aumento el contador de choques
+                contadorChoquesAst += 1;
+                //imprimo para comprobar que sirva
+                System.out.println("Pego 4");
+                //creo numero aleatorio
+                SecureRandom coordenadaAst1 = new SecureRandom();
+                //los guardo en varuiables
+                int rango = coordenadaAst1.nextInt(850);
+                int rango2 = coordenadaAst1.nextInt(850);
+                //creo nuevas coordenadas para asteroide4
+                aste4.setX(rango2);
+                aste4.setY(-10);
+                //creo un explosion
+                Explocion explocion = new Explocion(nave.getX_inicial(), nave.getY_inicial() - 50);
+                //la pinto
+                explocion.paint(g);
+                //si el  contador de los choques es mayor a dos el juego termina
+                if (contadorChoquesAst > 2) {
+                    juegoFin = false;
+                }
+
+            }
         }
 
     }
@@ -338,6 +554,19 @@ public class Panel extends JPanel {
         return !areaA.isEmpty();
     }
 
+    public boolean colisionAst3() {
+        Area areaA = new Area(nave.getBounds());
+        areaA.intersect(aste3.getBounds());
+
+        return !areaA.isEmpty();
+    }
+      public boolean colisionAst4() {
+        Area areaA = new Area(nave.getBounds());
+        areaA.intersect(aste4.getBounds());
+
+        return !areaA.isEmpty();
+    }
+
     public boolean colisionBalaAst1(Bala bala) {
         Area areaA = new Area(bala.getBounds());
         areaA.intersect(aste1.getBounds());
@@ -349,6 +578,20 @@ public class Panel extends JPanel {
     public boolean colisionBalaAst2(Bala bala) {
         Area areaA = new Area(bala.getBounds());
         areaA.intersect(aste2.getBounds());
+
+        return !areaA.isEmpty();
+    }
+
+    public boolean colisionBalaAst3(Bala bala) {
+        Area areaA = new Area(bala.getBounds());
+        areaA.intersect(aste3.getBounds());
+
+        return !areaA.isEmpty();
+    }
+    
+     public boolean colisionBalaAst4(Bala bala) {
+        Area areaA = new Area(bala.getBounds());
+        areaA.intersect(aste4.getBounds());
 
         return !areaA.isEmpty();
     }

@@ -19,7 +19,7 @@ public class Nave {
 
     //creo las dimensuiones de la nave
     int anchoNave = 150;
-    int alturaNave = 170;
+    int alturaNave = 100;
 
     //indico las variabes de posicion de inicio
     int x_inicial = 380;
