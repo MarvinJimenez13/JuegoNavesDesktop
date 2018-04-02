@@ -42,7 +42,7 @@ public class Asteroide {
 
     public void paint(Graphics2D g) {
         //creo imagen para el asteroide  
-        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide.gif"));
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide1.gif"));
         //dibujo la imagen
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
     }

@@ -34,25 +34,25 @@ public class Fondo {
         
         if(Panel.nivel == 1){
             //creo la imagen de fondo
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/Fondogif.gif"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo1.gif"));
           //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
         }
        if(Panel.nivel == 2){
            //creo la imagen de fondo
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo2.gif"));
           //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
         }
         if(Panel.nivel == 3){
            //creo la imagen de fondo
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/esp.jpg"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo3.gif"));
           //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
         }
          if(Panel.nivel == 4){
            //creo la imagen de fondo
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/images.jpg"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/fondo4.gif"));
           //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
         }
