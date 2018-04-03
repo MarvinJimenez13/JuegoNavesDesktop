@@ -41,10 +41,30 @@ public class Asteroide {
     }
 
     public void paint(Graphics2D g) {
+        if(Panel.nivel == 1){
         //creo imagen para el asteroide  
         ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide1.gif"));
         //dibujo la imagen
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
+        }
+         if(Panel.nivel == 2){
+        //creo imagen para el asteroide  
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide2.gif"));
+        //dibujo la imagen
+        g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
+        }
+          if(Panel.nivel == 3){
+        //creo imagen para el asteroide  
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide.gif"));
+        //dibujo la imagen
+        g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
+        }
+           if(Panel.nivel == 4){
+        //creo imagen para el asteroide  
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide44.gif"));
+        //dibujo la imagen
+        g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
+        }
     }
 
     public void moverAst() {

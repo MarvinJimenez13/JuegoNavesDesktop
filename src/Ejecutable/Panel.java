@@ -596,6 +596,39 @@ public class Panel extends JPanel {
         return !areaA.isEmpty();
     }
 
+      public static int getNivel() {
+        return nivel;
+    }
+
+    public static void setNivel(int nivel) {
+        Panel.nivel = nivel;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public int getContadorChoquesAst() {
+        return contadorChoquesAst;
+    }
+
+    public void setContadorChoquesAst(int contadorChoquesAst) {
+        this.contadorChoquesAst = contadorChoquesAst;
+    }
+     
+     
     public void finJuego() {
 
     }
