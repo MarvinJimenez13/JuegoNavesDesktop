@@ -1,7 +1,7 @@
 package Ejecutable;
 
-
 import java.awt.Color;
+import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -9,11 +9,18 @@ import javax.swing.JOptionPane;
 
 public class InicioJuego {
 
-    public static void main(String args[]) {
-        //creo un JFrame
-        JFrame ventana = new JFrame("Juego Nave");
-        //creo un objeto panel
-        Panel panel = new Panel();
+    
+       //creo un JFrame
+    JFrame ventana = new JFrame("Juego Nave");
+       //creo un objeto panel
+    Panel panel = new Panel();
+    //variable auxiliar
+    boolean nuevoFin = true;
+    //nuevos nuemro para setear en los nuevo asteroides
+    int aste1,aste2,aste3,aste4;
+
+    public void iniciar() {
+     
         //a la venta le agrego el panel
         ventana.add(panel);
         //creo su ancho y alto
@@ -24,16 +31,62 @@ public class InicioJuego {
         ventana.setVisible(true);
         //metodo al cerrar la ventana
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
+        //le asigno un color de fondo
         panel.setBackground(Color.BLACK);
-    
-          if(panel.contadorChoquesAst > 2 ){
-          panel.juegoFin = false;
+       
+        
+        /*
+        La condicion siguiente es para saber cuando el juego acabó 
+        y se debe volver a reniciar las variables del juego
+        */
+        
+        if (!nuevoFin) {
+            panel.setPuntos(0);
+            panel.setVidas(3);
+            panel.setContadorChoquesAst(0);
+            panel.setNivel(1);
+            SecureRandom coordenadaAst = new SecureRandom();
+            aste1 = coordenadaAst.nextInt(800);
+            aste2 = coordenadaAst.nextInt(800);
+            aste3 = coordenadaAst.nextInt(800);
+            aste4 = coordenadaAst.nextInt(800);
+            
+            //asigno nuevas coordenadas a los asteroides
+            panel.aste1.setX(aste1);
+            panel.aste1.setY(-10);
+            
+            panel.aste2.setX(aste2);
+            panel.aste2.setY(-10);
 
-       
-                  
+            panel.aste3.setX(aste3);
+            panel.aste3.setY(-200);
+
+            panel.aste4.setX(aste4);
+            panel.aste4.setY(-200);            
+
+            //asigno nuevoas valores a las variables para reiniciar el while de  abajo
+            panel.juegoFin = true;
+            nuevoFin = true;
         }
-       
+        
+        /*
+        
+        Condicion que sirve para saber en que momento termina el juego,
+        termina cuando hay 3 choques de asteroides con la nave
+        
+        Cambia el valor de las variables a false para que no entre en el bucle
+        while de abajo
+        
+        Cuando entra el if de arriba cambia el valor de los chocques y
+        eso hace que no entre a cambiar variables el siguiente if.
+        
+        */
+        if (panel.contadorChoquesAst > 2) {
+            panel.juegoFin = false;
+            nuevoFin = panel.juegoFin;
+
+        }
+
         //mientras el juego siga
         while (panel.juegoFin) {
             //pinto el panel de nuevo
@@ -45,8 +98,12 @@ public class InicioJuego {
             } catch (InterruptedException ex) {
                 Logger.getLogger(InicioJuego.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             panel.repaint();
+               //imprimo para ayudarme a ver cómo se comporta
+            System.out.println("Puntos:" + panel.getPuntos());
+            System.out.println(" Vidas: " + panel.getVidas());
+            System.out.println("Choques: " + panel.getContadorChoquesAst());
         }
 
     }
