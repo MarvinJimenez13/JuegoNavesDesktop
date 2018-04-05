@@ -16,10 +16,14 @@ public class Nave {
     
     //creo una lista de las balas que se van a crear
       public ArrayList listaBalas = new ArrayList();
+      //creo una lista para gguardar los campos que se crean
+      public ArrayList campoDeFuerza = new ArrayList();
+     
+     
 
     //creo las dimensuiones de la nave
     int anchoNave = 150;
-    int alturaNave = 100;
+    int alturaNave = 120;
 
     //indico las variabes de posicion de inicio
     int x_inicial = 380;
@@ -76,6 +80,10 @@ public class Nave {
             izquierda = false;
         }
 
+        
+        
+        
+        
     }
     //metodo para poder mover mediante teclado
 
@@ -94,12 +102,23 @@ public class Nave {
         entonces creo una nueva bala con las coordenadas de  el lugar
         en donde se encuentra la nave*/ 
         if(e.getKeyCode() == KeyEvent.VK_SPACE ){
-            Bala bala = new Bala(x_inicial,y_inicial);
+            Bala bala = new Bala(x_inicial-25,y_inicial-45);
             //añado la bala a la lista de balas
             listaBalas.add(bala);
         }
+        
+        //si el codigo del teclado es igual a la tecla Q
+         if(e.getKeyCode() == KeyEvent.VK_Q ){
+             //inicializo el verCampo en las coordenadas de la nave
+        CampoDeFuerza  verCampo = new CampoDeFuerza(x_inicial-25, y_inicial-40);
+          //lo añado a la lista
+            campoDeFuerza.add(verCampo);
+          
+        }
     }
 
+    //GETTERS Y SETTERS PARA VALORES
+    
     public int getAnchoNave() {
         return anchoNave;
     }
@@ -135,7 +154,7 @@ public class Nave {
     
      //metodo para crear un forma geometrica de la nave y tener su area
     public Area getBounds(){
-        Rectangle forma1 = new Rectangle(x_inicial,y_inicial,100,100);
+        Rectangle forma1 = new Rectangle(x_inicial-30,y_inicial,130,100);
         nave = new Area(forma1);
         
         areaNave = nave;

@@ -56,6 +56,12 @@ public class Fondo {
           //dibujo la imagen
         g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
         }
+          if(Panel.nivel == 5){
+           //creo la imagen de fondo
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/Fondogif.gif"));
+          //dibujo la imagen
+        g.drawImage(imagenFondo.getImage(), x_inicial, y_inicial, ancho, alto, null);
+        }
 
     }
 

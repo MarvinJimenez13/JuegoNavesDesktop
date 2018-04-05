@@ -65,6 +65,12 @@ public class Asteroide {
         //dibujo la imagen
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
         }
+            if(Panel.nivel == 5){
+        //creo imagen para el asteroide  
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide4.gif"));
+        //dibujo la imagen
+        g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
+        }
     }
 
     public void moverAst() {

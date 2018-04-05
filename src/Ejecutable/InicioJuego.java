@@ -1,5 +1,7 @@
 package Ejecutable;
 
+import Juego.BalaEnemiga;
+import Juego.NaveEnemiga;
 import java.awt.Color;
 import java.security.SecureRandom;
 import java.util.logging.Level;
@@ -62,7 +64,34 @@ public class InicioJuego {
             panel.aste3.setY(-200);
 
             panel.aste4.setX(aste4);
-            panel.aste4.setY(-200);            
+            panel.aste4.setY(-200);        
+            
+            /*
+            
+            Creo un bucle while por que un for me da problemas
+            a la hora de recorrer la lista e ir removiendo las balas
+            
+            */
+            
+            //contador auxiliar
+            int contador =0;
+            //mientras que la lista sea diferente de cero o no este vacia
+            while(!panel.naveEnemiga.listaBalaEnemiga.isEmpty()){
+                /*
+                
+                Creo el objeto con la referencia en el inidice cero siempre
+                por que cuando se remueva el siguiente objeto toma el mismo
+                indice inmediatamente
+                
+                */
+                BalaEnemiga removeB = (BalaEnemiga)panel.naveEnemiga.listaBalaEnemiga.get(contador);
+                //remuevo la bala
+                panel.naveEnemiga.listaBalaEnemiga.remove(removeB);
+              
+            }
+            //renicio la nave destras de la pantalla
+            panel.naveEnemiga.setY_inicial(-300);
+        
 
             //asigno nuevoas valores a las variables para reiniciar el while de  abajo
             panel.juegoFin = true;
@@ -94,7 +123,7 @@ public class InicioJuego {
             //un try para recoger exepciones
             try {
                 //cada 10 tiempos :v
-                Thread.sleep(10);
+                   Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(InicioJuego.class.getName()).log(Level.SEVERE, null, ex);
             }
