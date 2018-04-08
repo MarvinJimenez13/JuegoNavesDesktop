@@ -19,8 +19,6 @@ import java.awt.event.KeyListener;
 import java.awt.geom.Area;
 import java.net.URL;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel {
@@ -31,7 +29,7 @@ public class Panel extends JPanel {
     public static int nivel = 1;
     //puntos en 0 y vidas en 3
     int puntos;
-    int vidas = 3;
+    int vidas = 5;
     //defino variables para el sonido
     URL direccionSonidoDisparo, direccionSonidoChoque;
     AudioClip sonidoChoque, sonidoDisparo;
@@ -48,11 +46,11 @@ public class Panel extends JPanel {
     //creo la nave 
     Nave nave = new Nave();
     //creo la nave Enemiga
-    public NaveEnemiga naveEnemiga = new NaveEnemiga(coorNaveEnemiga,-300, binarioIzqDer);
+    public NaveEnemiga naveEnemiga = new NaveEnemiga(coorNaveEnemiga,2000, binarioIzqDer);
     //creo el fondo
     Fondo fondo = new Fondo();
     
-    CampoDeFuerza verC = new CampoDeFuerza(nave.getX_inicial(), nave.getY_inicial());
+    //CampoDeFuerza verC = new CampoDeFuerza(nave.getX_inicial(), nave.getY_inicial());
 
     //creo asteroides
     public Asteroide aste1 = new Asteroide(coordenadaY1, -10);
@@ -126,15 +124,23 @@ public class Panel extends JPanel {
 
         //Dibujo las vidas
         g.setColor(Color.red);
-        g.drawString("VIdas: " + vidas, 1030, 120);
+        g.drawString("Vidas: " + vidas, 1030, 120);
 
         //DIbujo que perdio la partida
-        if (contadorChoquesAst > 2) {
+        if (vidas < 1) {
             Font score2 = new Font("Arial", Font.BOLD, 70);
             g3.setFont(score2);
             g3.setColor(Color.WHITE);
             g3.drawString("YOU LOSE PRRO :V", 185, 400);
         }
+        
+        if(contadorChoqueBalaNaveE >= 20){
+            Font score2 = new Font("Arial", Font.BOLD, 70);
+            g3.setFont(score2);
+            g3.setColor(Color.WHITE);
+            g3.drawString("GANASTE, TE MERECES \n UNOS MAMELUCOS", 185, 400);
+        }
+        
 
     }
 
@@ -178,7 +184,7 @@ public class Panel extends JPanel {
             //la pinto
             explocion.paint(g);
             //si el  contador de los choques es mayor a dos el juego termina
-            if (contadorChoquesAst > 2) {
+            if (vidas < 1) {
                 juegoFin = false;
             }
 
@@ -206,7 +212,7 @@ public class Panel extends JPanel {
             //la pinto
             explocion.paint(g);
             //si el  contador de los choques es mayor a dos el juego termina
-            if (contadorChoquesAst > 2) {
+            if (vidas < 1) {
                 juegoFin = false;
             }
 
@@ -218,7 +224,7 @@ public class Panel extends JPanel {
             Bala pintarBala = (Bala) nave.listaBalas.get(i);
             Bala sonidoB = (Bala) nave.listaBalas.get(i);
             //si la bala es mayor o igual que los 400px
-            if (pintarBala.getY_inicio() == 400) {
+            if (pintarBala.getY_inicio() < 500  &&  pintarBala.getY_inicio() > 490) {
                 //activo sonido de bala
                 sonidoDisparo.play();
             }
@@ -395,6 +401,7 @@ public class Panel extends JPanel {
             //si la colision bala con la nave enemiga es true
             if(colisionBalaNaveEnemiga(balaCol)){
                 
+                 sonidoChoque.play();
                   //creo una explocion
                 Explocion explocion = new Explocion(naveEnemiga.getX_inicial(), naveEnemiga.getY_inicial());
                 //pinto la explocion
@@ -408,12 +415,14 @@ public class Panel extends JPanel {
                  contadorChoqueBalaNaveE++;
                  
                  //si hay 20 choques
-                 if(contadorChoqueBalaNaveE == 20){
+                 if(contadorChoqueBalaNaveE >= 20){
                      //pinto explocion
                      explocion.paint(g);
                      //muevo la nave a otro lado
-                     naveEnemiga.setX_inicial(-1000);
-                     naveEnemiga.setY_inicial(-1000);
+                     naveEnemiga.setX_inicial(2000);
+                     naveEnemiga.setY_inicial(2000);
+                     
+                     juegoFin = false; 
                  }
             }
             
@@ -429,6 +438,8 @@ public class Panel extends JPanel {
             BalaEnemiga colBalaEne = (BalaEnemiga)naveEnemiga.listaBalaEnemiga.get(i);
              //si la colisoion de la bala enemiga con la nave es true
            if(colisionBalaEnemigaNave(colBalaEne)){
+               
+                sonidoChoque.play();
                 //reduzco las vidas
                 vidas--;
                 /*
@@ -448,29 +459,33 @@ public class Panel extends JPanel {
                  //aumento el contador auxiliar
                  contadorNuevo++;
                  //si el contador auxiliar es igual a alguno de esos valores
-                 if(contadorNuevo == 1 || contadorNuevo == 50 || contadorNuevo == 100){
+                 if(contadorNuevo == 1 || contadorNuevo == 25 || contadorNuevo == 50){
                      /*
                      Aumento el choque de asteroides, hago esto para que una serie de balas valga como un
                      choque más de asteroides, ya que cuando hay 3 choques el juego termina y las vidas son 0 
                      tambien.
                      */
-                     contadorChoquesAst++;
+                    vidas--;
                  }
                  
                  //si el contador de choques es mayor a 2
-                 if(contadorChoquesAst > 2){
+                 if(vidas < 1){
                      //termina el juego
                      juegoFin = false;
                  } 
                  
                  
             }
+           if(nave.hayCampo){
            //si la colison de la bala enemiga con el campo es true
            if(colisionBalaEnemigaCampo(colBalaEne)){
+                sonidoChoque.play();
                //remuevo la bala y no le pasa nada a la nave
                naveEnemiga.listaBalaEnemiga.remove(colBalaEne);
                System.out.println("Bala enemiga pego en campo");
+               nave.campoDeFuerza.remove(0);
                
+           }
            }
             
         }
@@ -479,7 +494,7 @@ public class Panel extends JPanel {
         
         
         //NIVELES
-        if (puntos > 5 && puntos < 10) {
+        if (puntos >= 5 && puntos < 10) {
             nivel = 2;
             //aumento la velocidad
             aste1.setY_velocidad(10);
@@ -487,7 +502,7 @@ public class Panel extends JPanel {
             //el aste3 todavia no debe verse
             aste3.setY(-200);
         }
-        if (puntos > 10 && puntos < 15) {
+        if (puntos >= 10 && puntos < 15) {
             nivel = 3;
             //aumento la velocidad
             aste1.setY_velocidad(15);
@@ -531,14 +546,14 @@ public class Panel extends JPanel {
                 //la pinto
                 explocion.paint(g);
                 //si el  contador de los choques es mayor a dos el juego termina
-                if (contadorChoquesAst > 2) {
+                if (vidas < 1) {
                     juegoFin = false;
                 }
 
             }
 
         }
-        if (puntos > 15 && puntos < 20 ) {
+        if (puntos >= 15 && puntos < 20 ) {
             nivel = 4;
            // aste3.setY(-200);         
             //aumento la velocidad
@@ -588,7 +603,7 @@ public class Panel extends JPanel {
                 //la pinto
                 explocion.paint(g);
                 //si el  contador de los choques es mayor a dos el juego termina
-                if (contadorChoquesAst > 2) {
+                if (vidas < 1) {
                     juegoFin = false;
                 }
 
@@ -633,12 +648,12 @@ public class Panel extends JPanel {
                 //la pinto
                 explocion.paint(g);
                 //si el  contador de los choques es mayor a dos el juego termina
-                if (contadorChoquesAst > 2) {
+                if (vidas < 1) {
                     juegoFin = false;
                 }
 
             }
-        }if(puntos > 20){
+        }if(puntos >= 20){
             nivel =5;
             //muestro la nave enemiga
           naveEnemiga.setY_inicial(10);
@@ -692,7 +707,7 @@ public class Panel extends JPanel {
                 //la pinto
                 explocion.paint(g);
                 //si el  contador de los choques es mayor a dos el juego termina
-                if (contadorChoquesAst > 2) {
+                if (vidas <1) {
                     juegoFin = false;
                 }
 
@@ -737,7 +752,7 @@ public class Panel extends JPanel {
                 //la pinto
                 explocion.paint(g);
                 //si el  contador de los choques es mayor a dos el juego termina
-                if (contadorChoquesAst > 2) {
+                if (vidas < 1) {
                     juegoFin = false;
                 }
             
@@ -825,7 +840,7 @@ public class Panel extends JPanel {
      
      public boolean colisionBalaEnemigaCampo(BalaEnemiga balas){
            Area areaA = new Area(balas.getBounds());
-        areaA.intersect(verC.getBounds());
+        areaA.intersect(nave.verCampo.getBounds());
 
         return !areaA.isEmpty();
      }
@@ -863,6 +878,22 @@ public class Panel extends JPanel {
 
     public void setContadorChoquesAst(int contadorChoquesAst) {
         this.contadorChoquesAst = contadorChoquesAst;
+    }
+
+    public int getContadorChoqueBalaNaveE() {
+        return contadorChoqueBalaNaveE;
+    }
+
+    public void setContadorChoqueBalaNaveE(int contadorChoqueBalaNaveE) {
+        this.contadorChoqueBalaNaveE = contadorChoqueBalaNaveE;
+    }
+
+    public int getContadorNuevo() {
+        return contadorNuevo;
+    }
+
+    public void setContadorNuevo(int contadorNuevo) {
+        this.contadorNuevo = contadorNuevo;
     }
      
      

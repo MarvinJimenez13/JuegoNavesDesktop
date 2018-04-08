@@ -30,7 +30,7 @@ public class CampoDeFuerza {
         }
      //metodo para sacar el area para colison
       public Area getBounds(){
-        Rectangle forma1 = new Rectangle(x_inicial,y_inicial,300,300);
+        Rectangle forma1 = new Rectangle(x_inicial-50,y_inicial-50,200,200);
         campo = new Area(forma1);
         areaCampo = campo;
         areaCampo.add(campo);

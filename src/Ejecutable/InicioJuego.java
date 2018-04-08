@@ -1,13 +1,11 @@
 package Ejecutable;
 
 import Juego.BalaEnemiga;
-import Juego.NaveEnemiga;
 import java.awt.Color;
 import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class InicioJuego {
 
@@ -44,8 +42,10 @@ public class InicioJuego {
         
         if (!nuevoFin) {
             panel.setPuntos(0);
-            panel.setVidas(3);
+            panel.setVidas(5);
             panel.setContadorChoquesAst(0);
+            panel.setContadorChoqueBalaNaveE(0);
+            panel.setContadorNuevo(0);
             panel.setNivel(1);
             SecureRandom coordenadaAst = new SecureRandom();
             aste1 = coordenadaAst.nextInt(800);
@@ -90,7 +90,7 @@ public class InicioJuego {
               
             }
             //renicio la nave destras de la pantalla
-            panel.naveEnemiga.setY_inicial(-300);
+            panel.naveEnemiga.setY_inicial(2000);
         
 
             //asigno nuevoas valores a las variables para reiniciar el while de  abajo
@@ -110,7 +110,7 @@ public class InicioJuego {
         eso hace que no entre a cambiar variables el siguiente if.
         
         */
-        if (panel.contadorChoquesAst > 2) {
+        if (panel.vidas < 1) {
             panel.juegoFin = false;
             nuevoFin = panel.juegoFin;
 

@@ -13,7 +13,7 @@ public class Nave {
     //creo variables de area
     Area nave,areaNave;
     
-    
+    public CampoDeFuerza verCampo;
     //creo una lista de las balas que se van a crear
       public ArrayList listaBalas = new ArrayList();
       //creo una lista para gguardar los campos que se crean
@@ -36,6 +36,8 @@ public class Nave {
     boolean derecha = false;
     boolean izquierda = false;
 
+    
+    public boolean hayCampo = false;
    
 
     public Nave() {
@@ -109,8 +111,10 @@ public class Nave {
         
         //si el codigo del teclado es igual a la tecla Q
          if(e.getKeyCode() == KeyEvent.VK_Q ){
+             
+             hayCampo = true;
              //inicializo el verCampo en las coordenadas de la nave
-        CampoDeFuerza  verCampo = new CampoDeFuerza(x_inicial-25, y_inicial-40);
+         verCampo = new CampoDeFuerza(x_inicial, y_inicial);
           //lo añado a la lista
             campoDeFuerza.add(verCampo);
           
@@ -154,7 +158,7 @@ public class Nave {
     
      //metodo para crear un forma geometrica de la nave y tener su area
     public Area getBounds(){
-        Rectangle forma1 = new Rectangle(x_inicial-30,y_inicial,130,100);
+        Rectangle forma1 = new Rectangle(x_inicial,y_inicial,130,120);
         nave = new Area(forma1);
         
         areaNave = nave;

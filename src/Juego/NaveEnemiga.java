@@ -1,4 +1,4 @@
-
+ 
 package Juego;
 
 import java.awt.Graphics2D;
@@ -82,10 +82,9 @@ public class NaveEnemiga {
     //metodo para disparar
     public void disparar(){
         // Si la coordenada x es cualquira de los sigueintes valores
-         if(x_inicial  == 30 || x_inicial  ==  60|| x_inicial  == 90 || x_inicial  == 120 || x_inicial  == 150 ||
-                x_inicial  == 180 || x_inicial  == 210 || x_inicial  == 240 || x_inicial  == 270 || x_inicial  == 300
-                || x_inicial  == 330 || x_inicial  == 360 || x_inicial  == 390 || x_inicial  == 420 || x_inicial  == 450 ||
-                x_inicial  == 480 || x_inicial  == 500){
+         if(x_inicial  == 50 || x_inicial  ==  100|| x_inicial  == 150 || x_inicial  == 200 || x_inicial  == 250 ||
+                x_inicial  == 300 || x_inicial  == 350 || x_inicial  == 400 || x_inicial  == 450 || x_inicial  == 500
+                || x_inicial  == 550){
              // creo una nueva bala enemiga y la ajusto para que se vea bonito
              BalaEnemiga balaE = new BalaEnemiga(x_inicial+200, y_inicial+180);
              //añado a la lista
