@@ -94,7 +94,7 @@ public class InicioJuego {
         
 
             //asigno nuevoas valores a las variables para reiniciar el while de  abajo
-            panel.juegoFin = true;
+            panel.juegoFin = true ;
             nuevoFin = true;
         }
         

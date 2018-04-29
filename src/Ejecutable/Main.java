@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         
-        
+     
         InicioJuego inicioJ = new InicioJuego();
       
            //Muestro una pregunta para saber si desea jugar
@@ -16,6 +16,7 @@ public class Main {
         if (iniciar == 0) {
             //mando a llamar al metodo de InicioJuego para iniciarlo
             inicioJ.iniciar();
+         //menu.jugarya();
         } else if (iniciar == 1) {
             System.exit(0);
         }
