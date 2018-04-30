@@ -1,26 +1,35 @@
 package Ejecutable;
 
+
+
+import Menu.Menu;
 import javax.swing.JOptionPane;
 
-public class Main {
-
+public class Main{
+    
     public static void main(String[] args) {
-
         
+         InicioJuego inicioJ = new InicioJuego();
+        
+          //Muestro una pregunta para saber si desea jugar
+     Menu menu = new Menu();
+ 
+
+        while(menu.juga){
+          
+              menu.setVisible(true);
+              
+          
      
-        InicioJuego inicioJ = new InicioJuego();
-      
-           //Muestro una pregunta para saber si desea jugar
-        int iniciar = JOptionPane.showConfirmDialog(null, "¿Desar jugar?");
-        //si la respuesta es si
-        if (iniciar == 0) {
-            //mando a llamar al metodo de InicioJuego para iniciarlo
+        if (!menu.juga) {
+            
             inicioJ.iniciar();
-         //menu.jugarya();
-        } else if (iniciar == 1) {
-            System.exit(0);
+            menu.setVisible(false);
+            menu.juga= false;
+       
+        } 
+       
         }
-     
         
         
         //mienstras la variable auxiliar sea true
@@ -40,11 +49,32 @@ public class Main {
                 inicioJ.iniciar();
 
             } else if (iniciar2 == 1) {
-                System.exit(0);
+                 inicioJ.ventana.dispose();
+                  inicioJ.nuevoFin = false;
+              
+              
+              
+              menu.juga = true;
+               while(menu.juga){
+          
+              menu.setVisible(true);
+     
+        if (!menu.juga) {
+            
+            inicioJ.iniciar();
+            menu.setVisible(false);
+            menu.juga= false;
+       
+        } 
+       
+        }
+              
             }
 
         }
-
+        
+        
     }
-
+    
+    
 }

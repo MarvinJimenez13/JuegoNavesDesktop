@@ -11,11 +11,11 @@ public class InicioJuego {
 
     
        //creo un JFrame
-    JFrame ventana = new JFrame("Juego Nave");
+    public JFrame ventana = new JFrame("Juego Nave");
        //creo un objeto panel
     Panel panel = new Panel();
     //variable auxiliar
-    boolean nuevoFin = true;
+    public boolean nuevoFin = true;
     //nuevos nuemro para setear en los nuevo asteroides
     int aste1,aste2,aste3,aste4;
 
