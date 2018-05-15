@@ -5,13 +5,12 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Asteroide {
     //creo valibles de area
     Area asteroide,areaAst;
-    //creo una nave
+   
     Nave nave = new Nave();
 
     //Creo numero aleatorios
@@ -36,8 +35,8 @@ public class Asteroide {
 
     // al crear un objeto asteroide pediran coordenadas iniciales
     public Asteroide(int x, int y) {
-        this.x_inicial = x;
-        this.y_inicial = y;
+        x_inicial = x;
+        y_inicial = y;
     }
 
     public void paint(Graphics2D g) {
@@ -48,27 +47,27 @@ public class Asteroide {
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
         }
          if(Panel.nivel == 2){
-        //creo imagen para el asteroide  
+        
         ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide2.gif"));
-        //dibujo la imagen
+       
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
         }
           if(Panel.nivel == 3){
-        //creo imagen para el asteroide  
+       
         ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide.gif"));
-        //dibujo la imagen
+      
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
         }
            if(Panel.nivel == 4){
-        //creo imagen para el asteroide  
+     
         ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide44.gif"));
-        //dibujo la imagen
+      
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
         }
             if(Panel.nivel == 5){
-        //creo imagen para el asteroide  
-        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide4.gif"));
-        //dibujo la imagen
+      
+        ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Asteroide4_1.gif"));
+      
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoAst, alturaAst, null);
         }
     }

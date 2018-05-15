@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Bala {
     
-    //creo variables para  areas
+    
     Area bala,areaBala;
 
     //Creo su ancho y largo de la bala
@@ -24,8 +24,8 @@ public class Bala {
     /* le paso las coordenadas de la nave para crear la bala justo
     en el lugar en donde se encuentre la nave*/
     public Bala(int x_puntaNave, int y_puntaNave) {
-        this.x_inicio = x_puntaNave;
-        this.y_inicio = y_puntaNave;
+       x_inicio = x_puntaNave;
+       y_inicio = y_puntaNave;
     }
 
     public void paint(Graphics2D g) {

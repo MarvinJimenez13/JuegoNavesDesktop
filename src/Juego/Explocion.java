@@ -17,8 +17,8 @@ public class Explocion {
     
     //el contructor pedira la svariables de inicio
     public Explocion(int xinicial, int yinicial){
-        this.xExplo = xinicial;
-        this.yExplo = yinicial;
+        xExplo = xinicial;
+        yExplo = yinicial;
     }
     
     

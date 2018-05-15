@@ -1,5 +1,6 @@
-
 package Menu;
+
+import javax.swing.JOptionPane;
 
 public class Menu extends javax.swing.JFrame {
 
@@ -14,21 +15,28 @@ public class Menu extends javax.swing.JFrame {
         btn_salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_jugar = new javax.swing.JButton();
+        btn_creditos = new javax.swing.JButton();
+        btn_instrucciones = new javax.swing.JButton();
         lb_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Juego(ProyectoPOO)");
+        setFocusable(false);
+        setFocusableWindowState(false);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_salir.setBackground(java.awt.Color.black);
         btn_salir.setFont(new java.awt.Font("FrankRuehl", 1, 18)); // NOI18N
         btn_salir.setForeground(new java.awt.Color(204, 204, 204));
-        btn_salir.setText("SALIR :V");
+        btn_salir.setText("SALIR ");
+        btn_salir.setFocusPainted(false);
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_salirActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 130, 60));
+        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 130, 40));
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -38,13 +46,37 @@ public class Menu extends javax.swing.JFrame {
         btn_jugar.setBackground(java.awt.Color.black);
         btn_jugar.setFont(new java.awt.Font("FrankRuehl", 1, 18)); // NOI18N
         btn_jugar.setForeground(new java.awt.Color(204, 204, 204));
-        btn_jugar.setText("JUGAR :V");
+        btn_jugar.setText("JUGAR ");
+        btn_jugar.setFocusPainted(false);
         btn_jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_jugarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 130, 60));
+        getContentPane().add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 130, 40));
+
+        btn_creditos.setBackground(new java.awt.Color(0, 0, 0));
+        btn_creditos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_creditos.setForeground(new java.awt.Color(204, 204, 204));
+        btn_creditos.setText("CRÉDITOS");
+        btn_creditos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_creditosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_creditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 130, 40));
+
+        btn_instrucciones.setBackground(java.awt.Color.black);
+        btn_instrucciones.setFont(new java.awt.Font("FrankRuehl", 1, 18)); // NOI18N
+        btn_instrucciones.setForeground(new java.awt.Color(204, 204, 204));
+        btn_instrucciones.setText("INSTRUCCIONES");
+        btn_instrucciones.setFocusPainted(false);
+        btn_instrucciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_instruccionesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_instrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 190, 40));
 
         lb_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Menu.jpg"))); // NOI18N
         lb_fondo.setText("jLabel1");
@@ -54,15 +86,27 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean juga = true;
-     public boolean info = true;
-    
+
+
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-      System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_jugarActionPerformed
-      juga = false;
+        juga = false;
     }//GEN-LAST:event_btn_jugarActionPerformed
+
+    private void btn_creditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_creditosActionPerformed
+        JOptionPane.showMessageDialog(this, "INTEGRANTES: \n Jimenez Gamboa Marvin Roberto \n "
+                + "Alarid Guzmán Abraham \n Vázquez Rangel Erick \n Roa Patlan Brandon Celso ", "CRÉDITOS", 1);
+    }//GEN-LAST:event_btn_creditosActionPerformed
+
+    private void btn_instruccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_instruccionesActionPerformed
+        JOptionPane.showMessageDialog(this, "-> La nave se mueve con las flechas de izquierda y derecha. \n"
+                + "-> Se crea un campo de fuerza con la letra 'Q', pero sólo sirve contra la nave final. \n"
+                + "-> Disparas con la letra 'A'.",
+                 "INSTRUCCIONES", 1);
+    }//GEN-LAST:event_btn_instruccionesActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -94,12 +138,12 @@ public class Menu extends javax.swing.JFrame {
                 new Menu().setVisible(true);
             }
         });
-        
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_creditos;
+    private javax.swing.JButton btn_instrucciones;
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;

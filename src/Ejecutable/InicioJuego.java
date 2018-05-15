@@ -10,24 +10,24 @@ import javax.swing.JFrame;
 public class InicioJuego {
 
     
-       //creo un JFrame
+
     public JFrame ventana = new JFrame("Juego Nave");
-       //creo un objeto panel
+    
     Panel panel = new Panel();
     //variable auxiliar
     public boolean nuevoFin = true;
-    //nuevos nuemro para setear en los nuevo asteroides
+    //nuevos numeros para setear en los nuevo asteroides
     int aste1,aste2,aste3,aste4;
 
     public void iniciar() {
      
         //a la venta le agrego el panel
         ventana.add(panel);
-        //creo su ancho y alto
-        ventana.setSize(1250, 800);
-        //le pongo su localizacion en la pantalla
-        ventana.setLocation(70, 40);
-        //la hago visible
+      
+        ventana.setSize(1300, 830);
+
+        ventana.setLocation(150, 5);
+
         ventana.setVisible(true);
         //metodo al cerrar la ventana
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,12 +89,12 @@ public class InicioJuego {
                 panel.naveEnemiga.listaBalaEnemiga.remove(removeB);
               
             }
-            //renicio la nave destras de la pantalla
+            //renicio la nave debajo de la pantalla
             panel.naveEnemiga.setY_inicial(2000);
         
 
             //asigno nuevoas valores a las variables para reiniciar el while de  abajo
-            panel.juegoFin = true ;
+            panel.juegoFin = true;
             nuevoFin = true;
         }
         
@@ -118,11 +118,11 @@ public class InicioJuego {
 
         //mientras el juego siga
         while (panel.juegoFin) {
-            //pinto el panel de nuevo
+        
             panel.repaint();
             //un try para recoger exepciones
             try {
-                //cada 10 tiempos :v
+                //cada 10 tiempos 
                    Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(InicioJuego.class.getName()).log(Level.SEVERE, null, ex);

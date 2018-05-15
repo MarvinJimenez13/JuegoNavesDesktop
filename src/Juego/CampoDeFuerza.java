@@ -23,7 +23,7 @@ public class CampoDeFuerza {
     }
     
      public void paint(Graphics2D g) {
-        //creo imagen para el asteroide  
+        //creo imagen para el campo 
         ImageIcon auto = new ImageIcon(getClass().getResource("/Imagenes/Campo.png"));
         //dibujo la imagen
         g.drawImage(auto.getImage(), x_inicial, y_inicial, anchoCampo, altoCampo, null);

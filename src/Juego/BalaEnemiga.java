@@ -21,8 +21,8 @@ public class BalaEnemiga {
     
     
     public BalaEnemiga(int xinicio, int yinicio){
-        this.x_inicio = xinicio;
-        this.y_inicio = yinicio;
+        x_inicio = xinicio;
+        y_inicio = yinicio;
     }
     
      public void paint(Graphics2D g) {
@@ -44,7 +44,7 @@ public class BalaEnemiga {
      
      //metodo para sacar su area para colision
       public Area getBounds(){
-      Rectangle forma = new Rectangle(x_inicio,y_inicio,30,30);
+      Rectangle forma = new Rectangle(x_inicio,y_inicio,20,20);
       bala = new Area(forma);
       
       areaBala = bala;
