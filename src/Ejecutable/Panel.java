@@ -74,7 +74,7 @@ public class Panel extends JPanel {
         
         sonidoDisparo = Applet.newAudioClip(direccionSonidoChoque);
 
-        direccionMusicaFondo = getClass().getResource("/Sonidos/Ay.avi");
+        direccionMusicaFondo = getClass().getResource("/Sonidos/MusicaFondoN.wav");
 
         musicaFondo = Applet.newAudioClip(direccionMusicaFondo);
         //reproduzco la musica
@@ -852,11 +852,11 @@ public class Panel extends JPanel {
     }
 
     //METODOS PARA RESETEAR VALORES EN LA CLASE InicioJuego
-    public static int getNivel() {
+    public int getNivel() {
         return nivel;
     }
 
-    public static void setNivel(int nivel) {
+    public void setNivel(int nivel) {
         Panel.nivel = nivel;
     }
 

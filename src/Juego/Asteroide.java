@@ -28,7 +28,7 @@ public class Asteroide {
     int y_inicial;
 
     // variable auxiliar para mover
-    int y_velocidad;
+    int y_velocidad = 2;
 
     //variable auxiliar
     boolean mover = true;
@@ -75,7 +75,7 @@ public class Asteroide {
     public void moverAst() {
         // si mover es true
         if (mover) {
-            y_velocidad = 2;
+            //y_velocidad = 2;
             //incrementar la y 
             y_inicial += y_velocidad;
         }
